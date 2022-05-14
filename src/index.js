@@ -1,4 +1,6 @@
 import * as PIXI from 'pixi.js'
+import { Application } from '@pixi/app'
+import { AppLoaderPlugin } from '@pixi/loaders';
 import { gsap } from "gsap";
 import { PixiPlugin } from "gsap/PixiPlugin";
 import Preloader from "./js/PreloaderScene.js"
@@ -6,14 +8,16 @@ import Main from './js/MainScene.js';
 
 const size = [960, 540]
 
-const app = new PIXI.Application({
+Application.registerPlugin(AppLoaderPlugin);
+
+const app = new Application({
     width: size[0],
     height: size[1],
     resolution: window.devicePixelRatio,
     backgroundColor: 0x111111
 })
 let ratio = size[0] / size[1]
-let renderer = PIXI.autoDetectRenderer(size[0], size[1], null)
+// let renderer = PIXI.autoDetectRenderer(size[0], size[1], null)
 document.body.appendChild(app.view)
 resize()
 
